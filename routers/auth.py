@@ -1,8 +1,8 @@
+from models.user import DbUser
 from fastapi import APIRouter,Depends,HTTPException,status
 from schemas.user import Token,UserBase
 from sqlalchemy.orm import Session
 from database import get_db
-from models.user import DbUser
 from utils.hash import get_password_hash,verify_password
 from utils.auth_token import create_acess_token
 from fastapi.security import OAuth2PasswordRequestForm
@@ -32,7 +32,7 @@ def create_user(user:UserBase,db:Session = Depends(get_db)):
 
    access_token = create_acess_token(data = {'sub':user.username})
    return {
-      'acess_token' : access_token,
+      'access_token' : access_token,
       'token_type' : 'bearer'
    }
 
@@ -53,6 +53,6 @@ def login(
    access_token = create_acess_token(data = {'sub':user.username})
 
    return {
-      'acess_token' : access_token,
+      'access_token' : access_token,
       'token_type' : 'bearer'
    }
