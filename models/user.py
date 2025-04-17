@@ -13,4 +13,3 @@ class DbUser(Base):
     #Relationship
     incomes = relationship('DbIncome',back_populates='user')
     expenses = relationship('DbExpense',back_populates='user')
-
